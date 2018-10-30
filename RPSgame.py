@@ -10,6 +10,31 @@ userLives = 3
 computerLives = 3
 userScore = 0
 loop = False
+
+
+def winLose(status):
+    print("called win or lose funtion")
+    print("********************************************")
+    print("you", status, "Would you like to play again?")
+    print("Your score is", userScore)
+    choice = input("Y/N: ")
+
+    if choice == "Y" or "y":
+        # global variables
+        global userLives
+        global computerLives
+        global player
+        global computer_choice
+        global userScore
+        userLives = 3
+        userScore = 0
+        computerLives = 3
+
+    elif choice == "N" or choice == "n":
+        print("You chose to quit")
+        exit()
+
+
 # loop instead of player so that the loop is continuous until player breaks
 while loop is False:
     print("===============================================")
@@ -69,27 +94,8 @@ while loop is False:
 
 # for when the user loses all lives
     if userLives == 0:
-        print("You have lost all your lives!")
-        print("Your final score was ", userScore)
-        # Prompt to play again or quit
-        choice = input("Play again? Type 'Yes' to replay, 'Quit' to exit.")
-        # variable resets or exit
-        if choice == "Yes" or choice == "yes":
-            userLives = 3
-            userScore = 0
-            computer_choice = 3
-        elif choice == "Quit" or choice == "quit":
-            exit()
+        winLose("lose")
+
 # for when the computer loses all lives
     if computerLives == 0:
-        print("You have won! Computer lost all lives!")
-        print("Your final score was ", userScore)
-        # Prompt to play again or quit
-        choice = input("Play again? Type 'Yes' to replay, 'Quit' to exit.")
-        # variable resets or exit
-        if choice == "Yes" or choice == "yes":
-            userLives = 3
-            userScore = 0
-            computerLives = 3
-        elif choice == "Quit" or choice == "quit":
-            exit()
+        winLose("win")
